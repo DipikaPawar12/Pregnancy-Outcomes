@@ -1,0 +1,508 @@
+\documentclass{article}
+%\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=20mm,
+ right=20mm,
+ top=-2mm,
+ bottom=2mm,
+ }
+%\usepackage[margin=0.5in]{geometry}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath,amssymb}
+\usepackage{ifpdf}
+%\usepackage{cite}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{mdwmath}
+\usepackage{pdfpages}
+\usepackage{mdwtab}
+\usepackage{eqparbox}
+\usepackage{cite}
+%\onecolumn
+%\input{psfig}
+\usepackage{color}
+\usepackage{graphicx}
+\setlength{\textheight}{23.5cm} \setlength{\topmargin}{-1.05cm}
+\setlength{\textwidth}{6.5in} \setlength{\oddsidemargin}{-0.5cm}
+\renewcommand{\baselinestretch}{1}
+\pagenumbering{arabic}
+\usepackage{ragged2e}
+\renewcommand{\baselinestretch}{1.5}
+
+\begin{document}
+
+\textbf{
+\begin{center}
+{
+\large{School of Engineering and Applied Science (SEAS), Ahmedabad University}\vspace{4mm}
+}
+\end{center}
+%
+\begin{center}
+\large{B.Tech(ICT) Semester IV: Probability and Random Processes (MAT 202) }\\ \vspace{3mm}
+\end{center}
+}
+\begin{itemize}
+\item Group No : H B30
+\item Group Members :
+\newline
+Dipika Pawar (AU1841052)
+\newline 
+Mayankkumar Tank (AU1841057)
+\newline
+Rahul Chocha (AU1841076)
+
+\item Project Title: Human Fertility Model
+
+\end{itemize} 
+
+\section{Introduction}
+\subsection{Background}
+Human Reproduction is a very complex process with a lot of underlying factors aﬀecting the outcome of a pregnancy in many direct and indirect ways. What is the appropriate time during a women’s menstrual cycle for the process of fertilisation to occur? Or if the fertilisation occurs then what are the chances that the following pregnancy will terminate with the birth of a healthy child? Will the pregnancy result in a fetal loss (abortion or miscarriage)? and also what will be the eﬀect of using contraceptives on the birth rate? These are some of the many uncertainties related with the topic of human reproduction. The prediction of these uncertainties present at the various stages of the human reproduction can prove to be helpful in family planning and estimating the number of children a couple are likely to have considering the factors discussed above.
+\newline 
+\\As there are many uncertainties, it is very interesting topic to study. Researchers have used different perspectives to study this topic. One of the way is mathematical modeling. V.M. Dandekar in 1955 came up with a stochastic process with determines the number of births in given time period\cite{1} He used a binomial distribution and considered live birth as a success by considering other parameters constant to derive the model. However, the modified version of binomial was not able to fit the real data curve. Dr. S.N. Singh published two papers in 1963\cite{2} and then in 1968\cite{3} which modeled the uncertainty of how many children a couple can have assuming that there was no fetal loss; taking time first as a discrete and then as a continuous variable respectively. The models given by Dr. S. N. Singh were able to cope for. Then Dr. Bhattacharya and Dr. Singh had published a paper 1970 in which they also had considered fetal loss as a parameter\cite{4}. There are many assumptions in the above researches like period of observation is constant, conception rate is same in all women and in every situation, etc.In corporate with that, in \cite{5} a parity dependent model for number of birth was given by Singh. In the above
+model, "possibility of variation in fecundability and sterility over parity was considered". 
+\\\\In \cite{6}, sheps have given extension to the formula of no. of birth.
+In above all models formula over which time is calculted id fro zero to T. But in \cite{7}, Singh and Yadav consider equilibrium birth process and consider time interval from T to T+t( where T is disant point since marriage).
+In \cite{8}, Bhattcharya incorporated the possibility of fetal loss and applied it
+for different hypothetical family planning program to compute births.Above all paper, one assumption is women can't be at a risk of pregnancy during non susceptible period only. Now, what about those women who's male partner are away from home for 9 to 10 months. So in \cite{9}, by considering this factors singh had came to know the fecundability in two different type of couples. In \cite{10}, the article tries to prove the reality of the assumption of those previous papers have. Like one assumption was: "The population under consideration is heterogeneous with respect to fecundability". The article mentioned that age also plays an important role in pregnancy. This article had prove that why other possibilities are not more realistic. Also it includes the previous works of this topic, gave critique on theirs limitation and suggested some solutions. We know that age is a huge factor affecting the women's fertility\cite{15}. There are some other factors affecting the human fertility like Air pollution and chemical compounds.
+\newline
+\\In 1963, Mindel C. Sheps and Edward B. Perrin published a paper related to measure fertility with respect of contraceptives\cite{11}. They derived changes in Birth rate as a function of contraceptives by using stochastic model. By using this model they had proved that, "With this model it appears that more effective methods used by smaller fractions of a population would produce a greater decline in birth rates than would less effective methods used by more people." Then in \cite{12}, Mindel and Perrin had gave a model which includes fetal wastage and non-susceptible period to predict the number of children a couple can have over a given time period. They gave an expression for r births in y years. These results can be modeled using a binomial or Poisson distribution. By using this results we can predict the probability of $r^{th}$ child results in live birth. 
+\subsection{Motivation}
+In today’s fast forward life the prediction about having a live birth on pregnancy becomes helpful for a woman and also to the family in their future planning. All the parameters such as fetal loss(miscarriage, stillbirth), previous live-birth and non-susceptible time period play a vital role in determining the probability of live birth during pregnancy. So, by considering all such parameters and calculating the uncertainty of a live birth is essential.
+
+\subsection{Problem Statement/ Case Study}
+The problem statement consists of the number of fetal losses such as miscarriage, stillbirth and abortion and also the time period of the previous live birth and also about the susceptible time period taken as an input parameter. Also, factors such as weight are considered as an essential input parameter in this case. Taking all this input parameter for a constant duration and through using the binomial distribution, the main moto is to find out the uncertainty in predicting that after t years of the pregnancy can lead to a live birth or not. Also, the distribution becomes helpful in predicting the number of child births in a live birth which is accurate upto a certain extent.
+
+\section {Probabilistic Model Used/ PRP Concept Used}
+\begin{itemize}
+ 
+\item The Problem is Any Pregnancy can terminate or end in either live birth or fetal loss or stillbirth. And the Fertility of women for an upcoming live birth is dependent on previous live birth and fetal losses. The duration of these events is important to find the probability of upcoming birth. In this probabilistic model, we need the total time over these events were occurred which we take as the total number of months from marriage. Here we have to make some assumptions,
+\begin{center}
+    \text{\Large Assumptions}
+\end{center}
+\begin{enumerate}
+    \item We have to take the homogeneous group of women(with equal parameters) and all women are susceptible to pregnancy at marriage. All women have a menstrual cycle of 1 month and it is our unit of time.
+    \item During any menstrual cycle, women are susceptible to conception, the probability of conceiving (fecundability of women) call as $\rho$ and it is a monthly probability of L-conception that should be made. which is constant.
+    \item There is fixed probability $\alpha$ that any pregnancy will end in the fetal loss.
+    \item Any pregnancy terminates in a live birth have some infecundable period where women are not susceptible to conception. When any pregnancy terminates in fetal loss there is some infecundable period connected with that. So, The infecundable period associated with the fetal loss is w months. Now calculation for the live birth, until the live birth takes the there is $m_1$ months infecundable period and there also postpartum infecundable period connected with the after live birth which we call as $m_2$ months. Hence, Total infecundable period associated with the live birth is $m_1$ + $m_2$ months.
+    \item Now we have to consider the number of months between any two events, including a month when this event occurred. For example, the probability that the first conception occurs in t months of marriage. It can be found using the geometrical random variable because there no conception in previous t-1 months and conception at $t^{th}$ month. So, the probability is given as $\rho . (1 - \rho)^{t-1}$. If we take t = 0. So, that is not possible that's why we have to consider that month also. As our base article says, this definition meets the general renewal process. because the states women will occupy are infecundable months associated with fetal loss or infecundable months associated with live birth. Hence, it can be modeled using a zero-order Markov renewal process.
+\end{enumerate}
+\newpage
+\begin{center}
+    \text{\Large Derivation}
+\end{center}
+\par From assumption, $\rho$ is a monthly probability of conception and $\alpha$ is a monthly probability that conception will end in fetal loss. So we can find probability p, monthly probability of an L-conception.$\pi$ is the monthly probability of conception ended in fetal loss and q is a monthly probability of no conception.
+\begin{align*}
+    p &= (1 - \alpha)\rho
+    \\
+    q &= 1 - \rho;
+    \\
+    \pi &= \alpha\rho
+    \\
+    \therefore p + q + \pi &= 1.
+\end{align*}
+\item Calculating the probabilities without random variable,
+\par As we know the infecundable periods. here, we can find the total number of remaining months for the upcoming conception. Let's take you are finding for the $r^{th}$ birth. Total months from the marriage are t. So, infecundable months connected with previous live births are (r-1)$\times$m. where m = m1 + m2. So, the remaining months are t - (r-1)m - 1. Not considering the current month. if there is v indicates the number of fetal losses. So, infecundable months connected with fetal loss are vw. Now, remaining months are called y = t - (r-1)m - 1 - vw. Hence, we can say that in y months no conception. Here, we can apply the concept of permutation because these events (previous births, fetal losses) can happen in any order. which is $\frac{(v + r + y - 1)!}{(v)!(y)!(r-1)!}$\par
+Let N(t) is the number of L-conceptions that occurred in a marriage life of 1 to t months. So, From these calculations, we can find the cumulative probability that at least $r$ conception should occur in t months. So, Pr[N(t)$\ge$ r] is given as,
+\begin{align*}
+    Pr[N(t)\ge r] &= p^r \sum_{v = 0}^{z} \sum_{y = 0}^{t - (r-1)m - 1 - vw} \frac{(v + r + y - 1)!}{v!y!(r-1)!} \pi^v q^y
+\end{align*}
+
+\par This is about the finding the probability of at least r conception (Pr[N(t)$\ge$ r]). As we can write Pr[N(t)$\ge$ r] = $K_r(t)$. We can find the probability of $r_{th}$ conception occur in t months (Pr[N(t)$ = $ r]) given as,
+\begin{align*}
+    Pr[N(t) =  r] =  K_r(t) - K_{r+1}(t) . \hspace{5 mm} \text{ where } K_0 = 1.
+\end{align*}
+\item As we can see that above formulas are very difficult to find the probability. Let think in terms of Probability mass function. So, Probability mass function is founded from the behaviour. Here, the behaviour of outcome is binary because conception should be made or not. there not any intermediate possibilities. Let's take outcome 1 for successful conception and 0 for the unsuccessful conception. And this we are doing for number of time. In our topic it will done every month because of time of menstrual cycle is 1 month. It is behave like the binomial random variable. And our previous formula leads to also the binomial expansion. So, the binomial random variable's PDF is given as,
+\begin{align*}
+    f_X(x) = \binom{n}{x} p^x (1 - p)^{n - x}
+\end{align*}
+\item As we know the number of infecundable months and after excluding them we can actual number of months for conception. Those number of months are used to find the probability for at least r conception occur in t months. define $n^{'}$ define for actual months.
+\begin{align*}
+    \therefore \text{Months associated with live birth} &= (r-1)(m-1)
+    \\
+    \therefore \text{Months associated with Fetal losses} &= v(w-1)
+    \\
+    \text{Total months} &= t. 
+\end{align*}
+\begin{align*}
+    \therefore n^{'} = t - (r-1)(m-1) - v(w-1).
+\end{align*}
+\item So the Probability of at least r conception occur in t months given as,
+\begin{align*}
+    Pr[N(n^{'})\ge r+v] &= \sum_{x = v+r}^{n^{'}} \binom{n^{'}}{x} \rho^x (1 - \rho)^{n^{'}-x} 
+\end{align*}
+\par Above equation tells the probability of at least v+r conception in $n^{'}$ months. \par Now we have to consider the probability of v fetal losses preceding the $r^{th}$ L-conception. The monthly probability of any pregnancy end in fetal loss is $\alpha$. So, that is given as,
+\begin{align*}
+    \binom{r+v-1}{v} (1 - \alpha)^r (\alpha)^v
+\end{align*}
+\par By multiplying both equation we get Probability of at least r conception occur in t months.
+\begin{align*}
+        Pr[N(t) \ge r] &= K_r(t)
+        \\
+        &= (1 - \alpha)^r \sum_{v=0}^{z} \binom{r+v-1}{v} \alpha^v \sum_{x = v+r}^{n^{'}} \binom{n^{'}}{x} \rho^x (1 - \rho)^{n^{'}-x} 
+\end{align*}
+\par Above equation used to find the desired probability for any value of $\alpha$. $\alpha$ can be founded from the data. Here, $\alpha$ stands for the probability of fetal loss. If number of fetal loss is zero. then $\alpha$ will be zero and v is also equal to the zero. So, the actual months calculated ( n ) as,
+\begin{align*}
+    n' &=  t - (r-1)(m-1) - v(w-1)
+    \\
+    \therefore n &= t - (r-1)(m-1) \hspace{3cm} (\because v = 0)
+\end{align*}
+\par After all these changes above equation resulted into,
+\begin{align*}
+    Pr[N(t) \ge r] &= K_r(t)
+    \\
+    &= \sum_{x = r}^{n} \binom{n}{x} \rho^x (1 - \rho)^{n^{'}-x} 
+\end{align*}
+Hence, Above equation is used to find the at least r conception occur in t months. For finding exact r conception occur in t months.
+\begin{align*}
+    Pr[N(t) = r] &= K_r(t) - K_{r+1}(t) 
+\end{align*}
+In our base article, all these infecundable periods are taken as constant. But we make some modifications such as this period are not taken as constant. we made it a user-centered perspective. So, As the user said I have two fetal losses both at 5 months and 7 months respectively. So, we found the total infecundable period and exclude it from the total months entered by the user. From all these things we found the probability of r-th conception occurs in t months. So, we remove the limitations.
+\item We made one website portal where you can enter your data from the medical report and it will calculate the probability for r-th conception.
+
+\item In \cite{11}, according to their survey, if we consider initial fecundability above 0.10,  and a method with an effectiveness of 50 $\%$ would reduce fertility by less than one-third, and use a contraceptive of 80$\%$ effectiveness would reduce fertility by less than 60$\%$. Author defined whole table which includes how effectiveness of contraceptives effects fertility.
+
+
+\end{itemize} 
+
+\section{Pseudo Code/ Algorithm }
+\begin{itemize}
+    \item Algorithm Design\\
+    To execute the Equation which we had derived, we first assume some of the parameters i.e. $\rho=0.01$ and $w=5$ and some of the parameters had to give as input i.e. $t,r$ and $v$ all of them are stored in variables. After all values we have to put this equation in summation for that we have to use for loop. \\
+    To generate output as given in article we have to find values for r=0 to r=5
+    and for all $r_i$ we have to sum the values form r=r to n. Here we take m = 15 moths because pre period is of 9 months as postpartum period taken as of 6 moths. Below Pseudo Code is used to find the desired probabilities.
+    \item Pseudo Code\\
+    begin\\
+    declare t as 111 (10 years)\\
+    declare m as 15\\
+    declare $\rho=0.01$\\
+    declare pt\_tot as array\\
+    for r = 1  to 5\\
+    declare tot=0\\
+    declare n=t-((r-1)*(m-1))\\
+    for i = r to n\\
+    tot=tot+$\binom{n}{i}*\rho^i*(1-ro)^{n-i}$\\
+    end loop\\
+    pt\_tot(r)=tot\\
+    end loop\\
+    end
+  \end{itemize}
+\section{Coding and Simulation} 
+\subsection{Simulation Framework}
+\justify Parameters used in simulation
+\begin{enumerate}
+  \item $t=$ total no of months from marriage
+  \item $\rho=$ probability of conceiving
+  \item $v=$ number of fetal losses.
+  \item $w=$ infecundable period in months associated with fetal loss
+  \item $m=$ nonsusceptable months / infecundable period associated with the live birth
+  \item $r=$ no of births
+  \item $n=$ time remain after live birth or still birth etc.
+\end{enumerate}
+
+\subsection{Reproduced Figures}
+\begin{itemize}
+\item Used Tools:-Python
+
+\begin{enumerate}
+\item Reproduced data-1\\
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_10years_article.jpg}
+  \caption{Data Given In Article }
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+  \includegraphics[width=.8\linewidth]{data_10years.jpg}
+  \caption{Simulated Data}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Probability of birth with time period of 10 years and fetal mortality 0\%}
+\label{fig:test}
+\end{figure}
+\newpage
+\item Reproduced Data-2\\
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_15years_article.jpg}
+  \caption{Data Given In Article}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_15years.jpg}
+  \caption{Simulated Data}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Probability of birth with time period of 15 years and fetal mortality 0$\%$}
+\label{fig:test}
+\end{figure}
+\item Reproduced Figure-1\\
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Binomial_Random_Variable_For_10_Years(at least)_Article_Data.png}
+  \caption{Data of Article}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Binomial_Random_Variable_For_10_Years(at least)_Simulation_Data.png}
+  \caption{Simulated Data}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Plot of data of Pr(birth) vs Number of birth with 0\% fetal mortality and time period of 10 years}
+\label{fig:test}
+\end{figure}
+\newpage
+\item Reproduced Figure-2\\
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Binomial_Random_Variable_For_15_Years(at least)_Article_Data.png}
+  \caption{Data of Article}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Binomial_Random_Variable_For_15_Years(at least)_Simulation.png}
+  \caption{Simulated Data}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Plot of data of Pr(birth) vs Number of birth with 0\% fetal mortality and time period of 15 years}
+\label{fig:test}
+\end{figure}
+\end{enumerate}
+\end{itemize}
+
+\subsection{New Work Done (Optional)}
+\subsubsection{New Analysis 1}
+In our base article author says that equivalent results can be generated using Poisson random variable. because we can think as the mall problem that in particular hour how may people entered. That can be modeled using Poisson random variable. So our problem is similar to that. In t months of marriage number of L-conception occur can be modeled using Poisson random variable. We tried with our concept of PRP and we come with new code and algorithm with Modeled using Poisson random variable. The good news is we got the same answer as above.
+\subsubsection{New Coding / Algorithm 1}
+\begin{itemize}
+    \item Algorithm for Poison R.V.\\
+    Now again for poison R.V. first we have to assign values for some pare meters. i.e. $v,m,w,t$ after this we have to take a sum of values of poison random variable from r=r to n. Here is simple postcode for algorithm
+    \item pseudo code
+    \begin{enumerate}
+        \item begin
+        \item declare v
+        \item declare t
+        \item declare w
+        \item declare m
+        \item declare n
+        \item declare r
+        \item declare pt\_tot
+        \item declare $\rho$
+        \item for r=0 to r
+        \item n=t-((r-1)*(m-1))- (v*(w-1))
+        \item total=0
+        \item for i=r to n
+        \item total = total+ $exp(-n\rho)\frac{(n\rho)^i}{i!}$
+        \item end loop
+        \item pt\_tot[r]=total
+        \item end loop
+        \item end
+    \end{enumerate}
+\end{itemize}
+\subsubsection{New Results 1}
+\item Reproduced Data-1\\
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_10years_article.jpg}
+  \caption{Data of Article}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_10years_Poison_RV.jpg}
+  \caption{Simulated Data with Poison R.V}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Probability of birth with time period of 10 years and fetal mortality 0\%}
+\label{fig:test}
+\end{figure}
+\newpage
+\item Reproduced Data-2\\
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_15years_article.jpg}
+  \caption{Data of Article}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_15years_Poison_RV.jpg}
+  \caption{Simulated Data with Poison R.V}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Probability of birth with time period of 15 years and fetal mortality 0\%}
+\label{fig:test}
+\end{figure}
+\newline
+\newline
+\item Reproduced Figure-1
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Binomial_Random_Variable_For_10_Years(at least)_Article_Data.png}
+  \caption{Data of Article}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Poison_Random_Variable_For_10_Years(at least)_Simulation_Data.png}
+  \caption{Simulated Data with Poison R.V}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Plot of data of Pr(birth) vs Number of birth with 0\% fetal mortality and time period of 15 years}
+\label{fig:test}
+\end{figure}
+\newpage
+\item Reproduced Figure-2
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Binomial_Random_Variable_For_15_Years(at least)_Article_Data.png}
+  \caption{Data of Article}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Poison_Random_Variable_For_15_Years(at least)_Simulation_Data.png}
+  \caption{Simulated Data with Poison R.V}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Plot of data of Pr(birth) vs Number of birth with 0\% fetal mortality and time period of 15 years}
+\label{fig:test}
+\end{figure}
+
+\subsubsection{New Analysis 2}
+There are many factors, which can affect the probability. Like age, weight, regular habits, previous sickness, etc. So by considering all these factors it can give interesting results. So here we had tried to include age factor. We know that by considering only one factor, we can't differentiate two female who have same age. But like this, we can add more and more factors such that we can gain more precision in this model. Now Age is a huge factor which affect the women's pregnancy. we found one article they give the data that in this period of time the chances related to 100\% is changes to 90\% or anything else. So, we take a age of women as an input and found the probability as above and after that we correlate with this data and find the final probability. This is theoretically right. but, In practical situation other factors also matters.
+\subsubsection{New Coding / Algorithm 2}
+\begin{itemize}
+    \item Algorithm for Previous formula with age factor.\\
+    Now to Include Age as factor for probability of nth birth we have to check one belongs with which age group and accordingly we can multiply that factor with probability of nth birth.  
+    \item Pseudo Code\\
+    \begin{enumerate}
+    \item begin
+    \item declare t as 111 (10 years)
+    \item declare m as 15
+    \item declare $\rho=0.01$
+    \item declare age
+    \item declare age\_factor
+    \item if age $<$ 25 and age $>$ 18 then
+    \item age\_factor=0.96
+    \item else if age $\geq$ 25 and age $<$ 35 then
+    \item age\_factor=0.86
+    \item else if age$\geq$35 and age$<$40 then
+    \item age\_factor=0.78
+    \item else if age $\geq$ 40 and age $<$ 45 then
+    \item age\_factor=0.15
+    \item else if age$\geq$ 45 then
+    \item age\_factor=0.035
+    \item declare pt\_tot as array
+    \item for r = 1  to 5
+    \item declare tot=0
+    \item declare n=t-((r-1)*(m-1))
+    \item for i = r to n
+    \item tot=tot+$\binom{n}{i}*\rho^i*(1-\rho)^{n-i}$
+    \item end loop
+    \item pt\_tot(r)=tot*age\_factor
+    \item end loop
+    \item end
+    \end{enumerate}
+\end{itemize}
+\newpage
+\subsubsection{New Results 2}
+\item Reproduced Data-1\\
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.8\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{data_10years_with_age_factor.jpg}
+  \caption{Simulated Data}
+  \label{fig:sub1}
+\end{subfigure}%
+\caption{Probability of birth with time period of 10 years and fetal mortality 0\% with age factor}
+\label{fig:test}
+\end{figure}
+
+\item Reproduced Figure-1\\
+
+\begin{figure}[htp]
+\centering
+\begin{subfigure}{.8\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{Binomial_Random_Variable_with_age_factor_For_10_Years(at least)_Simulation_Data.png}
+  \caption{Simulated Data}
+  \label{fig:sub1}
+\end{subfigure}%
+\caption{Plot of data of Pr(birth) vs Number of birth with 0\% fetal mortality and time period of 10 years with age factor}
+\label{fig:test}
+\end{figure}
+\newpage
+\section{Inference Analysis/ Comparison}
+	
+\begin{itemize}
+
+\item From our statistical data and graph, we can say that women has highest probability to getting the first L-conception. (In particular Age group)
+	
+\item As time after marriage increases, fertility of woman reduces and at some level her fertility becomes zero.
+
+\item Doctor can find the chances of upcoming L-conception. Then, If the probability for a woman to having child is low than the doctor can suggest her to care more for her baby as their might be complications. 
+
+\item Fertility reduces more in couples who use highly effective contraceptives than couples who use lower effective contraceptives.
+
+\item As we included age factor, the model get more precision. In contrast to this feature, there are many other factors that affect the output.
+
+\end{itemize} 
+
+\section{ Contribution of team members}	
+\subsection{Technical contribution of all team members }
+Enlist the technical contribution of members in the table. Redefine the tasks (e.g Task-1 as simulation of fig.1 and so on)
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+Tasks  & Mayankkumar Tank & Dipika Pawar & Rahul Chocha  \\ \hline 
+Coding and Simulation &    \checkmark           &       \checkmark         &     \checkmark            \\ \hline
+Website Building &       \checkmark         &       \checkmark         &       \checkmark          \\ \hline
+New Work's 
+Coding and Simulation &       \checkmark         &       \checkmark         &         \checkmark        \\ \hline
+\end{tabular}
+\end{table}
+\subsection{Non-Technical contribution of all team members }
+Enlist the non-technical contribution of members in the table. Redefine the tasks (e.g Task-1 as report writing etc.)
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+Tasks  & Mayankkumar Tank & Dipika Pawar &  Rahul Chocha \\ \hline
+Mathematical Derivation &    \checkmark           &      \checkmark         &       \checkmark        \\ \hline
+Report Writing &    \checkmark           &      \checkmark         &       \checkmark        \\ \hline
+Inferences &      \checkmark         &      \checkmark         &     \checkmark          \\ \hline
+Meeting with Doctor &     \checkmark          &    \checkmark           &       \checkmark       \\ \hline
+\end{tabular}
+\end{table}
+\bibliographystyle{IEEEtran}
+\bibliography{ref.bib}
+
+\end{document} 
